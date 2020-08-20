@@ -1,0 +1,32 @@
+{
+  "env": {
+    "browser": true,
+    "jquery": false,
+    "es6": true
+  },
+  "globals": {
+    "chayns": true,
+    "__DEV__": true,
+    "__STAGING__": true,
+    "__LIVE__": true
+  },
+  "parser": "babel-eslint",
+  "rules": {
+    "max-len": "off",
+    "linebreak-style": "off",
+    "indent": "off",
+    "strict": 0,
+    "comma-dangle": "off",
+    "no-use-before-define": "off",
+    "import/no-extraneous-dependencies": "off",
+    "import/no-unresolved": [
+      2,
+      {
+        "ignore": [
+          "chayns-components"
+        ]
+      }
+    ]
+  },
+  "extends": "airbnb"
+}

@@ -1,0 +1,14 @@
+.userInfo {
+  display: flex;
+  flex-direction: column;
+
+  p {
+    text-align: center;
+  }
+
+  .btnWrapper {
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+  }
+}
