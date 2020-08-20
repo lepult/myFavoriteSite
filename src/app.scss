@@ -12,3 +12,90 @@
     padding-top: 10px;
   }
 }
+
+
+.searchBox{
+  align-self:flex-end;
+  text-align: right;
+}
+.contentBox{
+  display: flex; 
+  flex-direction: column; 
+  align-items: center;
+}
+.listBox{
+  width: 480px;  
+}
+.websiteList{
+  margin-top: 20px;
+  display: flex; 
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.websiteIconContainer{
+  width: 20%;
+  //background-color: red;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 20px;
+  position: relative;
+  margin-bottom: 20px;
+}
+.websiteIcon{
+  width: 65px;
+  height: 65px;
+  background: white;
+  margin-bottom: 5px;
+  margin: 0px auto 5px auto;
+}
+.websiteName{
+  font-size: 13px;
+  line-height: 0.75;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+
+.formButton{
+  text-align: left;
+}
+.scrollButtons{
+  text-align: right;
+}
+.scrollLeft{
+  margin-right: 5px;
+}
+.scrollRight{
+  margin-left: 5px;
+}
+.form{
+  display: flex;
+  flex-direction: column;
+}
+.formPersonalInformation{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding-bottom: 20px;
+}
+.formWebsiteInformation{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+}
+.formInput{
+  width: 40%;
+  margin-bottom: 2.5px;
+  margin-top: 2.5px;
+}
+.formInputLink{
+  width: 90%;
+}
+.formHeader{
+  margin-left: 20px;
+}
+.formButton{
+  margin: 20px 0;
+}

@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import login from './utils/login';
 import './app.scss';
 
@@ -24,6 +25,8 @@ const init = async () => {
 
         const $introElement = document.querySelector('#intro');
         const $loginBtn = document.querySelector('#loginBtn');
+
+        chayns.ui.accordion.init();
 
         if (chayns.env.user.isAuthenticated) {
             handleUserIsLoggedIn($introElement, $loginBtn);
