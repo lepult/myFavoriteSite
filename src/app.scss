@@ -76,8 +76,9 @@
 }
 .formPersonalInformation{
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   padding-bottom: 20px;
+  flex-wrap: wrap;
 }
 .formWebsiteInformation{
   display: flex;
@@ -86,6 +87,11 @@
   align-items: center;
 }
 .formInput{
+  margin-bottom: 2.5px;
+  margin-top: 2.5px;
+  width: 100%;
+}
+.formInputNotDynamic{
   margin-bottom: 2.5px;
   margin-top: 2.5px;
   width: 100%;

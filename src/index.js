@@ -1,38 +1,31 @@
 /* eslint-disable no-param-reassign */
-import login from './utils/login';
 import './app.scss';
 
-const handleUserIsLoggedIn = ($introElement, $loginBtn) => {
-    $introElement.innerText = `Hallo ${chayns.env.user.firstName}`;
-    $loginBtn.innerText = 'Abmelden';
-    $loginBtn.addEventListener('click', async () => {
-        await chayns.logout();
-        window.location.reload();
-    });
-};
 
-const handleUserIsLoggedOut = ($introElement, $loginBtn) => {
-    $introElement.innerText = 'Bitte melde dich an';
-    $loginBtn.innerText = 'Anmelden';
-    $loginBtn.addEventListener('click', () => {
-        login(() => handleUserIsLoggedIn($introElement, $loginBtn));
-    });
-};
+// eslint-disable-next-line no-unused-vars
+/*
+function handleFormPlaceholderPosition() {
+    for (let i = 0; i < document.getElementsByClassName('formInput').length; i += 1) {
+        // if (document.getElementById(`${i}`).value) {
+            document.getElementsByClassName('formInput')[i].classList.add('labelRight');
+        // }
+    }
+}
+*/
 
+ const formRealignPlaceholder = () => {
+     console.log('test');
+    for (let i = 0; i < document.getElementsByClassName('formInput').length; i += 1) {
+        // if (document.getElementById(`${i}`).value) {
+            document.getElementsByClassName('formInput')[i].classList.add('labelRight');
+    }
+    console.log('sad');
+}
 const init = async () => {
     try {
+        formRealignPlaceholder();
         await chayns.ready;
-
-        const $introElement = document.querySelector('#intro');
-        const $loginBtn = document.querySelector('#loginBtn');
-
         chayns.ui.accordion.init();
-
-        if (chayns.env.user.isAuthenticated) {
-            handleUserIsLoggedIn($introElement, $loginBtn);
-        } else {
-            handleUserIsLoggedOut($introElement, $loginBtn);
-        }
     } catch (err) {
         console.error('No chayns environment found', err);
     }

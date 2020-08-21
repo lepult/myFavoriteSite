@@ -21,11 +21,10 @@
 
     <link rel="stylesheet" href="https://api.chayns.net/css/v4.2">
 
- 
-
     <title>chayns® ESNext Template</title>
 </head>
 <body>
+    <p>test</p>
     <div class="tapp">
         <div class="tapp__intro" style="margin-bottom: 20px;">
             <h1 class="headline">My Favourite Sites</h1>
@@ -71,21 +70,38 @@
                     <div style="width: 100%">
                         <div class="formHeader">Name</div>
                         <div class="formPersonalInformation">
-                            <input class="input formInput" placeholder="Vorname" dynamic>
-                            <input class="input formInput" placeholder="Name">
-                            <input class="input formInput" placeholder="E-Mail">
+                            <div class="input-group formInput">
+                            <input style="width: 100%;" class="input" type="text" id="0" required="">
+                                <label for="0" class="">Vorname</label>
+                            </div>
+                            <div class="input-group formInput">
+                                <input style="width: 100%;" class="input" type="text" id="dasHier" required="">
+                                <label for="1" class="">Nachname</label>
+                            </div>
                         </div>
                         <div class="formHeader">Adresse (optional)</div>
                         <div class="formPersonalInformation">
-                            <input class="input formInput" placeholder="Stadt">
-                            <input class="input formInput" placeholder="PLZ">
-                            <input class="input formInput" placeholder="Straße">
-                            <input class="input formInput" placeholder="Hausnummer">
+                            <div class="input-group formInput" style="width: 33%; margin-right: 2%">
+                                <input style="width: 100%;" class="input" type="text" id="2" required="">
+                                <label for="2" class="">PLZ</label>
+                            </div>
+                            <div class="input-group formInput" style="width: 65%">
+                                <input style="width: 100%;" class="input" type="text" id="3" required="">
+                                <label for="3" class="">Stadt</label>
+                            </div>
+                            <div class="input-group formInput">
+                                <input style="width: 100%;" class="input" type="text" id="4" required="">
+                                <label for="4" class="">Straße/Hausnummer</label>
+                            </div>
+                            <div class="input-group formInput">
+                                <input style="width: 100%;" class="input" type="text" id="5" required="">
+                                <label for="5" class="">E-Mail</label>
+                            </div>
                         </div>
                         <div class="formHeader">Deine Seite</div>
                         <div class="formWebsiteInformation">
-                            <input style="margin-bottom: 30px" class="input formInput" placeholder="Link deiner Seite">
-                            <textarea class="input formInput textInp" placeholder="Hast du noch Anmerkungen"></textarea>
+                            <input style="margin-bottom: 30px" class="input formInputNotDynamic" placeholder="Link deiner Seite">
+                            <textarea class="input formInputNotDynamic textInp" placeholder="Anmerkungen"></textarea>
                             <button class="button formButton">Senden!</button>
                         </div>
                     </div>
