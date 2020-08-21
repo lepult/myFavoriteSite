@@ -18,10 +18,14 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
 }
 
 .searchBox{
   text-align: right;
+  height: fit-content;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
 }
 .contentBox{
   display: flex; 
@@ -31,7 +35,8 @@
 .listBox{
   width: 480px;
   padding: 8px 12px;  
-  margin-bottom: 40px;
+  margin-bottom: 10px;
+  text-align: right;
 }
 .websiteList{
   margin-top: 20px;
@@ -62,18 +67,8 @@
   margin-left: auto;
 }
 
-
 .formButton{
   text-align: left;
-}
-.scrollButtons{
-  text-align: right;
-}
-.scrollLeft{
-  margin-right: 5px;
-}
-.scrollRight{
-  margin-left: 5px;
 }
 .form{
   display: flex;
@@ -99,5 +94,5 @@
   margin-left: 20px;
 }
 .formButton{
-  margin: 20px 0;
+  margin: 20px 0 10px;
 }
