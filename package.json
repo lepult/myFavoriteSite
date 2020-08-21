@@ -39,7 +39,8 @@
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
-    "chayns-components": "^4.17.7"
+    "chayns-components": "^4.17.7",
+    "whatwg-fetch": "^3.4.0"
   },
   "repository": {
     "type": "git"
