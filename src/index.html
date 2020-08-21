@@ -29,37 +29,34 @@
     <div class="tapp">
         <div class="tapp__intro">
             <h1 class="headline">My Favourite Sites</h1>
-          </div>
-
-        
-        <div class="content__card listBox">
             <div class="searchBox">
                 <i class="fas fa-search"></i>
                 <input class="input" type="text" placeholder="Suche" required>
             </div>
+        </div>
+        <div class="listBox">
             <div class="websiteList">
-                <div class="websiteIconContainer"> <div class="websiteIcon"></div> <div class="websiteName">Websitename</div> </div>
-                <div class="websiteIconContainer"> <div class="websiteIcon"></div> <div class="websiteName">Websitename</div> </div>
-                <div class="websiteIconContainer"> <div class="websiteIcon"></div> <div class="websiteName">Websitename</div> </div>
-                <div class="websiteIconContainer"> <div class="websiteIcon"></div> <div class="websiteName">Websitename</div> </div>
-                <div class="websiteIconContainer"> <div class="websiteIcon"></div> <div class="websiteName">Websitename</div> </div>
-                <div class="websiteIconContainer"> <div class="websiteIcon"></div> <div class="websiteName">Websitename</div> </div>
-                <div class="websiteIconContainer"> <div class="websiteIcon"></div> <div class="websiteName">Websitename</div> </div>
-                <div class="websiteIconContainer"> <div class="websiteIcon"></div> <div class="websiteName">Websitename</div> </div>
-                <div class="websiteIconContainer"> <div class="websiteIcon"></div> <div class="websiteName">Websitename</div> </div>
-                <div class="websiteIconContainer"> <div class="websiteIcon"></div> <div class="websiteName">Websitename</div> </div>
-                <div class="websiteIconContainer"> <div class="websiteIcon"></div> <div class="websiteName">Websitename</div> </div>
-                <div class="websiteIconContainer"> <div class="websiteIcon"></div> <div class="websiteName">Websitename</div> </div>
-                <div class="websiteIconContainer"> <div class="websiteIcon"></div> <div class="websiteName">Websitename</div> </div>
-                <div class="websiteIconContainer"> <div class="websiteIcon"></div> <div class="websiteName">Websitename</div> </div>
-                <div class="websiteIconContainer"> <div class="websiteIcon"></div> <div class="websiteName">Websitename</div> </div>
-                <div class="websiteIconContainer"> <div class="websiteIcon"></div> <div class="websiteName">Websitename</div> </div>
+                <div class="websiteIconContainer"><a style="border: none"><div class="websiteIcon"></div></a> <div class="websiteName">Websitename</div> </div>
+                <div class="websiteIconContainer"><a style="border: none"><div class="websiteIcon"></div></a> <div class="websiteName">Websitename</div> </div>
+                <div class="websiteIconContainer"><a style="border: none"><div class="websiteIcon"></div></a> <div class="websiteName">Websitename</div> </div>
+                <div class="websiteIconContainer"><a style="border: none"><div class="websiteIcon"></div></a> <div class="websiteName">Websitename</div> </div>
+                <div class="websiteIconContainer"><a style="border: none"><div class="websiteIcon"></div></a> <div class="websiteName">Websitename</div> </div>
+                <div class="websiteIconContainer"><a style="border: none"><div class="websiteIcon"></div></a> <div class="websiteName">Websitename</div> </div>
+                <div class="websiteIconContainer"><a style="border: none"><div class="websiteIcon"></div></a> <div class="websiteName">Websitename</div> </div>
+                <div class="websiteIconContainer"><a style="border: none"><div class="websiteIcon"></div></a> <div class="websiteName">Websitename</div> </div>
+                <div class="websiteIconContainer"><a style="border: none"><div class="websiteIcon"></div></a> <div class="websiteName">Websitename</div> </div>
+                <div class="websiteIconContainer"><a style="border: none"><div class="websiteIcon"></div></a> <div class="websiteName">Websitename</div> </div>
+                <div class="websiteIconContainer"><a style="border: none"><div class="websiteIcon"></div></a> <div class="websiteName">Websitename</div> </div>
+                <div class="websiteIconContainer"><a style="border: none"><div class="websiteIcon"></div></a> <div class="websiteName">Websitename</div> </div>
+                <div class="websiteIconContainer"><a style="border: none"><div class="websiteIcon"></div></a> <div class="websiteName">Websitename</div> </div>
+                <div class="websiteIconContainer"><a style="border: none"><div class="websiteIcon"></div></a> <div class="websiteName">Websitename</div> </div>
+                <div class="websiteIconContainer"><a style="border: none"><div class="websiteIcon"></div></a> <div class="websiteName">Websitename</div> </div>
+                <div class="websiteIconContainer"><a style="border: none"><div class="websiteIcon"></div></a>  <div class="websiteName">Websitename</div> </div>
             </div>
-                <div class="scrollButtons">
-                    <i class="far fa-arrow-alt-circle-left scrollLeft"></i>
-                    <i class="far fa-arrow-alt-circle-right scrollRight"></i>
-                </div>
-
+            <div class="scrollButtons">
+                    <a style="border: none"><i class="far fa-arrow-alt-circle-left scrollLeft"></i></a>
+                    <a style="border: none"><i class="far fa-arrow-alt-circle-right scrollRight"></i></a>
+            </div>
         </div>
 
         <div class="accordion" data-group="1">
@@ -73,25 +70,24 @@
             </div>
             <div class="accordion__body">
                 <div class="accordion__item form">
-                    <div>
+                    <div style="width: 100%">
                         <div class="formHeader">Name</div>
                         <div class="formPersonalInformation">
-                            <div class="formInput"><input class="input" placeholder="Vorname"></div>
-                            <div class="formInput"><input class="input" placeholder="Nachname"></div>
-                            <div class="formInput"><input class="input" placeholder="E-Mail"></div>
-                            <div class="formInput"></div>
+                            <input class="input formInput" placeholder="Vorname" dynamic>
+                            <input class="input formInput" placeholder="Name">
+                            <input class="input formInput" placeholder="E-Mail">
                         </div>
                         <div class="formHeader">Adresse (optional)</div>
                         <div class="formPersonalInformation">
-                            <div class="formInput"><input class="input" placeholder="Stadt"></div>
-                            <div class="formInput"><input class="input" placeholder="PLZ"></div>
-                            <div class="formInput"><input class="input" placeholder="Straße"></div>
-                            <div class="formInput"><input class="input" placeholder="Hausnummer"></div>
+                            <input class="input formInput" placeholder="Stadt">
+                            <input class="input formInput" placeholder="PLZ">
+                            <input class="input formInput" placeholder="Straße">
+                            <input class="input formInput" placeholder="Hausnummer">
                         </div>
                         <div class="formHeader">Deine Seite</div>
                         <div class="formWebsiteInformation">
-                            <input style="margin-bottom: 30px" class="input formInput formInputLink" placeholder="Link deiner Seite">
-                            <textarea class="input formInput textInp" placeholder="Hast du noch Anmerkungen" style="width: 90%"></textarea>
+                            <input style="margin-bottom: 30px" class="input formInput" placeholder="Link deiner Seite">
+                            <textarea class="input formInput textInp" placeholder="Hast du noch Anmerkungen"></textarea>
                             <button class="button formButton">Senden!</button>
                         </div>
                     </div>

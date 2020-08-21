@@ -14,8 +14,13 @@
 }
 
 
+.tapp__intro{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
 .searchBox{
-  align-self:flex-end;
   text-align: right;
 }
 .contentBox{
@@ -24,7 +29,9 @@
   align-items: center;
 }
 .listBox{
-  width: 480px;  
+  width: 480px;
+  padding: 8px 12px;  
+  margin-bottom: 40px;
 }
 .websiteList{
   margin-top: 20px;
@@ -74,9 +81,7 @@
 }
 .formPersonalInformation{
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-around;
+  flex-direction: column;
   padding-bottom: 20px;
 }
 .formWebsiteInformation{
@@ -86,12 +91,9 @@
   align-items: center;
 }
 .formInput{
-  width: 40%;
   margin-bottom: 2.5px;
   margin-top: 2.5px;
-}
-.formInputLink{
-  width: 90%;
+  width: 100%;
 }
 .formHeader{
   margin-left: 20px;
