@@ -141,7 +141,7 @@ const formTestForInput = (input) => {
     const nachname = document.querySelector('.Nachname').value;
     const email = document.querySelector('.E-Mail').value;
     const link = document.querySelector('.Link').value;
-    const button = document.querySelector('.formButton')
+    const button = document.querySelector('.formButton');
     if (vorname && nachname && email && link) {
         button.classList.remove('grey');
     } else if (!vorname || !nachname || !email || !link) {
