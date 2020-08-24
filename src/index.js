@@ -50,6 +50,33 @@ const extendWebsiteList = async () => {
         fetchSitesCounter += 1;
     }
 };
+const sendFormInput = () => {
+    // Name
+    const vorname = document.querySelector('.Vorname').value;
+    const nachname = document.querySelector('.Nachname').value;
+    // Adresse
+    const plz = document.querySelector('.PLZ').value;
+    const stadt = document.querySelector('.Stadt').value;
+    const straße = document.querySelector('.Straße').value;
+    const email = document.querySelector('.E-Mail').value;
+    // Seite
+    const link = document.querySelector('.Link').value;
+    const anmerkungen = document.querySelector('.Anmerkungen').value;
+    chayns.intercom.sendMessageToPage({
+        text: `${nachname} ${vorname} ${email} \n${stadt} ${plz} ${straße} \n${link} \n${anmerkungen} lllll`
+    }).then((data) => {
+        if (data.status === 200) {
+            document.querySelector('.Vorname').value = null;
+            document.querySelector('.Nachname').value = null;
+            document.querySelector('.PLZ').value = null;
+            document.querySelector('.Stadt').value = null;
+            document.querySelector('.Straße').value = null;
+            document.querySelector('.E-Mail').value = null;
+            document.querySelector('.Link').value = null;
+            document.querySelector('.Anmerkungen').value = null;
+        }
+    });
+};
 
 const init = async () => {
     try {
@@ -60,6 +87,8 @@ const init = async () => {
     }
     const sites = await fetchSitesData(0, 20);
     document.querySelector('.extendButton').addEventListener('click', () => { extendWebsiteList(); });
+    document.querySelector('.formButton').addEventListener('click', () => { sendFormInput(); });
+
     createSiteList(sites.Data);
 
     formRealignPlaceholder();
