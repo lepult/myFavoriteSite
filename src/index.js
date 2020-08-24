@@ -11,7 +11,7 @@ const formRealignPlaceholder = () => {
 };
 const fetchSitesData = async (skip, take) => {
     try {
-        const response = await fetch(`https://chayns1.tobit.com/TappApi/Site/SlitteApp?SearchString=pizza&Skip=${skip}&Take=${take}`);
+        const response = await fetch(`https://chayns1.tobit.com/TappApi/Site/SlitteApp?SearchString=ahaus&Skip=${skip}&Take=${take}`);
         const json = await response.json();
         console.log('parsed json', json);
         return json;
@@ -26,14 +26,14 @@ const createSiteList = (sites) => {
         const websiteIconLink = document.createElement('a');
 
         const websiteIcon = document.createElement('div');
-        // const websiteIconDef = document.createElement('div');
+        const websiteIconDef = document.createElement('div');
 
         const websiteName = document.createElement('div');
 
         websiteIconContainer.classList.add('websiteIconContainer');
         websiteIconLink.classList.add('websiteIconLink');
         websiteIcon.classList.add('websiteIcon');
-        // websiteIconDef.classList.add('websiteIconDef');
+        websiteIconDef.classList.add('websiteIconDef');
         websiteName.classList.add('websiteName');
 
         // websiteIcon.classList.add('background');
@@ -41,17 +41,21 @@ const createSiteList = (sites) => {
 
         websiteName.innerHTML = site.appstoreName;
         websiteIconLink.addEventListener('click', () => { chayns.openUrlInBrowser(`https://chayns.net/${site.siteId}`); });
-        websiteIcon.style = `background-image: url(https://sub60.tobit.com/l/${site.locationId}?size=65), url(https://sub60.tobit.com/l/152342?size=65)`;
+        websiteIcon.style = `background-image: url(https://sub60.tobit.com/l/${site.locationId}?size=65)`;
+        websiteIconDef.style = 'background-image: url(https://sub60.tobit.com/l/152342?size=65)';
 
         document.querySelector('.websiteList').appendChild(websiteIconContainer);
         websiteIconContainer.appendChild(websiteIconLink);
-        websiteIconLink.appendChild(websiteIcon);
-        // websiteIconLink.appendChild(websiteIconDef);
+        websiteIconLink.appendChild(websiteIconDef);
+        websiteIconDef.appendChild(websiteIcon);
         websiteIconContainer.appendChild(websiteName);
     }
 };
 const extendWebsiteList = async () => {
+    document.querySelector('.extendButton').classList.add('grey');
     const sites = await fetchSitesData(20 * fetchSitesCounter, 21);
+    document.querySelector('.extendButton').classList.remove('grey');
+
     if (sites.Data) {
         if (!sites.Data[20]) {
             console.log('keine 21');
@@ -95,6 +99,22 @@ const sendFormInput = () => {
     }
 };
 
+const FormAddEventListeners = () => {
+    const inputs = document.querySelectorAll('.mandatory');
+
+    // eslint-disable-next-line no-restricted-syntax
+    for (const input of inputs) {
+        input.children[0].addEventListener('input', () => { formTestForInput(input); });
+    }
+};
+const formTestForInput = (input) => {
+    if (!input.children[0].value) {
+        input.children[1].classList.add('formInputMissing');
+    } else if (input.children[0].value) {
+        input.children[1].classList.remove('formInputMissing');
+    }
+};
+
 const init = async () => {
     try {
         await chayns.ready;
@@ -104,6 +124,15 @@ const init = async () => {
     }
     document.querySelector('.extendButton').addEventListener('click', () => { extendWebsiteList(); });
     document.querySelector('.formButton').addEventListener('click', () => { sendFormInput(); });
+
+    // Initial Form Input Test
+    const inputs2 = document.querySelectorAll('.mandatory');
+    // eslint-disable-next-line no-restricted-syntax
+    for (const input of inputs2) {
+        formTestForInput(input);
+    }
+
+    FormAddEventListeners();
 
     extendWebsiteList();
 

@@ -15,6 +15,9 @@
 .hidden{
   display: none;
 }
+.grey{
+  opacity: 0.25;
+}
 
 .tapp__intro{
   display: flex;
@@ -69,6 +72,13 @@
   margin: 0px auto 5px auto;
   background-size: contain;
 }
+.websiteIconDef{
+  width: 65px;
+  height: 65px;
+  background: white;
+  margin: 0px auto 5px auto;
+  background-size: contain;
+}
 .websiteName{
   width: 90%;
   height: 16px;
@@ -109,6 +119,10 @@
   margin-bottom: 2.5px;
   margin-top: 2.5px;
   width: 100%;
+}
+.formInputMissing{
+  color: #ca8181 !important;
+  font-weight: 700;
 }
 .formButton{
   margin: 20px 0 10px;
