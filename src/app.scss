@@ -12,7 +12,9 @@
     padding-top: 10px;
   }
 }
-
+.hidden{
+  display: none;
+}
 
 .tapp__intro{
   display: flex;
@@ -68,7 +70,7 @@
   background-size: contain;
 }
 .websiteName{
-  width: 100%;
+  width: 90%;
   height: 16px;
   font-size: 13px;
   line-height: 0.75;
@@ -107,9 +109,6 @@
   margin-bottom: 2.5px;
   margin-top: 2.5px;
   width: 100%;
-}
-.formHeader{
- 
 }
 .formButton{
   margin: 20px 0 10px;

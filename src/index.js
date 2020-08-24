@@ -2,7 +2,7 @@
 import './app.scss';
 import 'whatwg-fetch';
 
-let fetchSitesCounter = 1;
+let fetchSitesCounter = 0;
 const formRealignPlaceholder = () => {
     for (let i = 0; i < document.getElementsByClassName('formInput').length; i += 1) {
         // if (document.getElementById(`${i}`).value) {
@@ -51,9 +51,15 @@ const createSiteList = (sites) => {
     }
 };
 const extendWebsiteList = async () => {
-    const sites = await fetchSitesData(20 * fetchSitesCounter, 20);
-    const moreSites = await  fetchSitesData(20 * fetchSitesCounter + 1, 1);
-    if (sites) {
+    const sites = await fetchSitesData(20 * fetchSitesCounter, 21);
+    if (sites.Data) {
+        if (!sites.Data[20]) {
+            console.log('keine 21');
+            document.querySelector('.extendButton').classList.add('hidden');
+        } else {
+            sites.Data.length = 20;
+            console.log(sites);
+        }
         createSiteList(sites.Data);
         fetchSitesCounter += 1;
     }
@@ -96,11 +102,10 @@ const init = async () => {
     } catch (err) {
         console.error('No chayns environment found', err);
     }
-    const sites = await fetchSitesData(0, 20);
     document.querySelector('.extendButton').addEventListener('click', () => { extendWebsiteList(); });
     document.querySelector('.formButton').addEventListener('click', () => { sendFormInput(); });
 
-    createSiteList(sites.Data);
+    extendWebsiteList();
 
     formRealignPlaceholder();
 };
