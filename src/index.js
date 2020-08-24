@@ -3,6 +3,9 @@ import './app.scss';
 import 'whatwg-fetch';
 
 let fetchSitesCounter = 0;
+let searchFilter = 'Ahaus';
+let myVar;
+
 const formRealignPlaceholder = () => {
     for (let i = 0; i < document.getElementsByClassName('formInput').length; i += 1) {
         // if (document.getElementById(`${i}`).value) {
@@ -11,12 +14,13 @@ const formRealignPlaceholder = () => {
 };
 const fetchSitesData = async (skip, take) => {
     try {
-        const response = await fetch(`https://chayns1.tobit.com/TappApi/Site/SlitteApp?SearchString=ahaus&Skip=${skip}&Take=${take}`);
+        const response = await fetch(`https://chayns1.tobit.com/TappApi/Site/SlitteApp?SearchString=${searchFilter}&Skip=${skip}&Take=${take}`);
         const json = await response.json();
         console.log('parsed json', json);
         return json;
     } catch (ex) {
         console.log('parsing failed', ex);
+        return null;
     }
 };
 const createSiteList = (sites) => {
@@ -58,16 +62,39 @@ const extendWebsiteList = async () => {
 
     if (sites.Data) {
         if (!sites.Data[20]) {
-            console.log('keine 21');
             document.querySelector('.extendButton').classList.add('hidden');
         } else {
             sites.Data.length = 20;
-            console.log(sites);
+            document.querySelector('.extendButton').classList.remove('hidden');
+
         }
         createSiteList(sites.Data);
         fetchSitesCounter += 1;
     }
 };
+const searchText = async () => {
+    searchFilter = document.querySelector('.searchInput').value;
+
+    if (!searchFilter) {
+        searchFilter = 'Ahaus';
+    }
+    const list = await Promise.all(document.querySelector('.websiteList').children);
+    // eslint-disable-next-line no-restricted-syntax
+    for await (const item of list) {
+        item.remove();
+    }
+    fetchSitesCounter = 0;
+
+    extendWebsiteList(searchFilter);
+};
+
+const searchSetTimeout = () => {
+    myVar = setTimeout(() => { searchText(); }, 500);
+};
+const searchClearTimeout = () => {
+    clearTimeout(myVar);
+};
+
 const sendFormInput = () => {
     // Name
     const vorname = document.querySelector('.Vorname').value;
@@ -83,20 +110,15 @@ const sendFormInput = () => {
 
     if (vorname && nachname && email && link) {
         chayns.intercom.sendMessageToPage({
-            text: `${nachname} ${vorname} ${email} \n${stadt} ${plz} ${straße} \n${link} \n${anmerkungen} lllll`
+            text: `Name: ${vorname} ${nachname} \nEmail: ${email} \nAdresse: ${straße} ${plz} ${stadt} \nSeite: ${link} \n${anmerkungen}`
         }).then((data) => {
             if (data.status === 200) {
-                chayns.dialog.alert('', 'Wir haben deine Anfrage erhalten').then(console.log);
+                chayns.dialog.alert('', 'Wir haben Deine Anfrage erhalten.').then(console.log);
 
-                document.querySelector('.Vorname').value = null;
-                document.querySelector('.Nachname').value = null;
-                document.querySelector('.PLZ').value = null;
-                document.querySelector('.Stadt').value = null;
-                document.querySelector('.Straße').value = null;
-                document.querySelector('.E-Mail').value = null;
                 document.querySelector('.Link').value = null;
                 document.querySelector('.Anmerkungen').value = null;
             }
+            formTestForInput();
         });
     }
 };
@@ -114,6 +136,17 @@ const formTestForInput = (input) => {
     } else if (input.children[0].value) {
         input.children[1].classList.remove('formInputMissing');
     }
+    // Sets Transparency of button
+    const vorname = document.querySelector('.Vorname').value;
+    const nachname = document.querySelector('.Nachname').value;
+    const email = document.querySelector('.E-Mail').value;
+    const link = document.querySelector('.Link').value;
+    const button = document.querySelector('.formButton')
+    if (vorname && nachname && email && link) {
+        button.classList.remove('grey');
+    } else if (!vorname || !nachname || !email || !link) {
+        button.classList.add('grey');
+    }
 };
 const formInitialFunction = () => {
     document.querySelector('.Vorname').value = chayns.env.user.firstName;
@@ -125,6 +158,8 @@ const formInitialFunction = () => {
         formTestForInput(input);
     }
 };
+
+
 const init = async () => {
     try {
         await chayns.ready;
@@ -135,6 +170,7 @@ const init = async () => {
     document.querySelector('.extendButton').addEventListener('click', () => { extendWebsiteList(); });
     document.querySelector('.formButton').addEventListener('click', () => { sendFormInput(); });
 
+    document.querySelector('.searchInput').addEventListener('input', () => { searchClearTimeout(); searchSetTimeout(); });
     // Initial Form Input Test
     formInitialFunction();
 

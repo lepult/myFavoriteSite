@@ -21,15 +21,20 @@
 
     <link rel="stylesheet" href="https://api.chayns.net/css/v4.2">
 
-    <title>chayns® ESNext Template</title>
+    <title>My Favourite Sites</title>
 </head>
 <body>
     <div class="tapp">
         <div class="tapp__intro" style="margin-bottom: 20px;">
             <h1 class="headline">My Favourite Sites</h1>
-            <div class="searchBox">
-                <input class="input" type="text" placeholder="Suche" required style="border: none;">
-                <a style="border: none"><i class="fal fa-search" style="opacity: 0.3"></i></a>
+            <div class="searchBox" style="display: flex; flex-direction: row; border: none">
+                <div class="input-group labelRight" style="width: fit-content; margin-right: 5px">
+                    <input style="width: 100%;" class="input searchInput" type="text" id="10" required="">
+                    <label for="10" class="">Suche</label>
+                </div>
+                <a class="searchButton" style="border: none">
+                    <i class="fal fa-search" style="opacity: 0.3"></i>
+                </a>
             </div>
             <p>Hier findest Du eine Übersicht von allen Chayns Website in deiner Umgebung. Deine Seite fehlt hier noch? Sende sie uns mithilfe des Formulars unten.</p>
         </div>
@@ -89,7 +94,6 @@
                             </div>
                             <textarea class="input formInputNotDynamic textInp Anmerkungen" placeholder="Anmerkungen"></textarea>
                         </div>
-                        <div class="formHeader" style="opacity: 50%">*Pflichtfeld</div>
                         <div style="width: 100%; text-align: center;">
                             <button class="button formButton">Senden!</button>
                         </div>
