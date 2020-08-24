@@ -86,6 +86,8 @@ const sendFormInput = () => {
             text: `${nachname} ${vorname} ${email} \n${stadt} ${plz} ${straße} \n${link} \n${anmerkungen} lllll`
         }).then((data) => {
             if (data.status === 200) {
+                chayns.dialog.alert('', 'Wir haben deine Anfrage erhalten').then(console.log);
+
                 document.querySelector('.Vorname').value = null;
                 document.querySelector('.Nachname').value = null;
                 document.querySelector('.PLZ').value = null;
@@ -98,7 +100,6 @@ const sendFormInput = () => {
         });
     }
 };
-
 const FormAddEventListeners = () => {
     const inputs = document.querySelectorAll('.mandatory');
 
@@ -114,7 +115,16 @@ const formTestForInput = (input) => {
         input.children[1].classList.remove('formInputMissing');
     }
 };
+const formInitialFunction = () => {
+    document.querySelector('.Vorname').value = chayns.env.user.firstName;
+    document.querySelector('.Nachname').value = chayns.env.user.lastName;
 
+    const inputs2 = document.querySelectorAll('.mandatory');
+    // eslint-disable-next-line no-restricted-syntax
+    for (const input of inputs2) {
+        formTestForInput(input);
+    }
+};
 const init = async () => {
     try {
         await chayns.ready;
@@ -126,11 +136,7 @@ const init = async () => {
     document.querySelector('.formButton').addEventListener('click', () => { sendFormInput(); });
 
     // Initial Form Input Test
-    const inputs2 = document.querySelectorAll('.mandatory');
-    // eslint-disable-next-line no-restricted-syntax
-    for (const input of inputs2) {
-        formTestForInput(input);
-    }
+    formInitialFunction();
 
     FormAddEventListeners();
 
