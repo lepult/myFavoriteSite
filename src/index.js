@@ -12,6 +12,7 @@ const formRealignPlaceholder = () => {
             document.getElementsByClassName('formInput')[i].classList.add('labelRight');
     }
 };
+
 const fetchSitesData = async (skip, take) => {
     try {
         const response = await fetch(`https://chayns1.tobit.com/TappApi/Site/SlitteApp?SearchString=${searchFilter}&Skip=${skip}&Take=${take}`);
@@ -66,12 +67,12 @@ const extendWebsiteList = async () => {
         } else {
             sites.Data.length = 20;
             document.querySelector('.extendButton').classList.remove('hidden');
-
         }
         createSiteList(sites.Data);
         fetchSitesCounter += 1;
     }
 };
+
 const searchText = async () => {
     searchFilter = document.querySelector('.searchInput').value;
 
@@ -87,7 +88,6 @@ const searchText = async () => {
 
     extendWebsiteList(searchFilter);
 };
-
 const searchSetTimeout = () => {
     myVar = setTimeout(() => { searchText(); }, 500);
 };
@@ -122,7 +122,7 @@ const sendFormInput = () => {
         });
     }
 };
-const FormAddEventListeners = () => {
+const formAddEventListeners = () => {
     const inputs = document.querySelectorAll('.mandatory');
 
     // eslint-disable-next-line no-restricted-syntax
@@ -174,7 +174,7 @@ const init = async () => {
     // Initial Form Input Test
     formInitialFunction();
 
-    FormAddEventListeners();
+    formAddEventListeners();
 
     extendWebsiteList();
 
