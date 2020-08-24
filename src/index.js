@@ -24,13 +24,12 @@ function handleFormPlaceholderPosition() {
 };
 const fetchSitesData = async () => {
     try {
-        const response = await fetch('https://chayns1.tobit.com/TappApi/Site/SlitteApp?SearchString=love&Skip=0&Take=50');
+        const response = await fetch('https://chayns1.tobit.com/TappApi/Site/SlitteApp?SearchString=pizza&Skip=0&Take=20');
         const json = await response.json();
-        console.log('parsed json', json)
+        console.log('parsed json', json);
         return json;
-    } catch(ex) {
-        console.log('parsing failed', ex)
-
+    } catch (ex) {
+        console.log('parsing failed', ex);
     }
 };
 
@@ -49,6 +48,7 @@ const createSiteList = (sites) => {
         websiteName.classList.add('websiteName');
 
         websiteName.innerHTML = site.appstoreName;
+        websiteIcon.src = `https://sub60.tobit.com/l/${site.locationId}?size=20`;
 
         document.querySelector('.websiteList').appendChild(websiteIconContainer);
         websiteIconContainer.appendChild(websiteIconLink);
@@ -61,16 +61,14 @@ const init = async () => {
     try {
         await chayns.ready;
         chayns.ui.accordion.init();
-
     } catch (err) {
         console.error('No chayns environment found', err);
-    } 
-    
-    const sites = await fetchSitesData()
+    }
+    const sites = await fetchSitesData();
     console.log(sites);
     createSiteList(sites.Data);
 
-    formRealignPlaceholder();  
+    formRealignPlaceholder();
 };
 
 init();
