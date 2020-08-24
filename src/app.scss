@@ -37,12 +37,15 @@
   padding: 8px 12px;  
   margin-bottom: 10px;
   text-align: center;
+  margin-left: auto;
+  margin-right: auto;
 }
 .websiteList{
   margin-top: 20px;
   display: flex; 
   flex-direction: row;
   flex-wrap: wrap;
+
 }
 
 .websiteIconContainer{
@@ -61,8 +64,8 @@
   width: 65px;
   height: 65px;
   background: white;
-  margin-bottom: 5px;
   margin: 0px auto 5px auto;
+  background-size: contain;
 }
 .websiteName{
   width: 100%;
