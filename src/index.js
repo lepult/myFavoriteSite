@@ -10,9 +10,9 @@ const formTestForInitialInput = () => {
     // eslint-disable-next-line no-restricted-syntax
     for (const dynamicInput of document.querySelectorAll('.dynamicInput')) {
         // eslint-disable-next-line no-restricted-syntax
-            formDynamicInput(dynamicInput);
-            dynamicInput.children[0].addEventListener('input', () => { formDynamicInput(dynamicInput); });
-            console.log(dynamicInput.children[0]);
+        formDynamicInput(dynamicInput);
+        dynamicInput.children[0].addEventListener('input', () => { formDynamicInput(dynamicInput); });
+        console.log(dynamicInput.children[0]);
     }
 };
 const formDynamicInput = (dynamicInput) => {
@@ -114,41 +114,44 @@ const searchSetTimeout = () => {
 };
 
 const sendFormInput = () => {
-    // Name
-    const vorname = document.querySelector('.Vorname').value;
-    const nachname = document.querySelector('.Nachname').value;
-    // Adresse
-    const plz = document.querySelector('.PLZ').value;
-    const stadt = document.querySelector('.Stadt').value;
-    const straße = document.querySelector('.Straße').value;
-    const email = document.querySelector('.E-Mail').value;
-    // Seite
-    const link = document.querySelector('.Link').value;
-    const anmerkungen = document.querySelector('.Anmerkungen').value;
+    if (chayns.env.user.isAuthenticated) {
+        // Name
+        const vorname = document.querySelector('.Vorname').value;
+        const nachname = document.querySelector('.Nachname').value;
+        // Adresse
+        const plz = document.querySelector('.PLZ').value;
+        const stadt = document.querySelector('.Stadt').value;
+        const straße = document.querySelector('.Straße').value;
+        const email = document.querySelector('.E-Mail').value;
+        // Seite
+        const link = document.querySelector('.Link').value;
+        const anmerkungen = document.querySelector('.Anmerkungen').value;
+        if (vorname && nachname && email && link) {
+            chayns.intercom.sendMessageToPage({
+                text: `Name: ${vorname} ${nachname} \nEmail: ${email} \nAdresse: ${straße} ${plz} ${stadt} \nSeite: ${link} \n${anmerkungen}`
+            }).then((data) => {
+                if (data.status === 200) {
+                    chayns.dialog.alert('', 'Wir haben Deine Anfrage erhalten.').then(console.log);
 
-    if (vorname && nachname && email && link) {
-        chayns.intercom.sendMessageToPage({
-            text: `Name: ${vorname} ${nachname} \nEmail: ${email} \nAdresse: ${straße} ${plz} ${stadt} \nSeite: ${link} \n${anmerkungen}`
-        }).then((data) => {
-            if (data.status === 200) {
-                chayns.dialog.alert('', 'Wir haben Deine Anfrage erhalten.').then(console.log);
+                    document.querySelector('.PLZ').value = null;
+                    document.querySelector('.Stadt').value = null;
+                    document.querySelector('.Straße').value = null;
+                    document.querySelector('.E-Mail').value = null;
+                    document.querySelector('.Link').value = null;
+                    document.querySelector('.Anmerkungen').value = null;
+                }
+                formDynamicInput(document.querySelector('.PLZ').parentElement);
+                formDynamicInput(document.querySelector('.Stadt').parentElement);
+                formDynamicInput(document.querySelector('.Straße').parentElement);
 
-                document.querySelector('.PLZ').value = null;
-                document.querySelector('.Stadt').value = null;
-                document.querySelector('.Straße').value = null;
-                document.querySelector('.E-Mail').value = null;
-                document.querySelector('.Link').value = null;
-                document.querySelector('.Anmerkungen').value = null;
-            }
-            formDynamicInput(document.querySelector('.PLZ').parentElement);
-            formDynamicInput(document.querySelector('.Stadt').parentElement);
-            formDynamicInput(document.querySelector('.Straße').parentElement);
-
-            formTestForInput(document.querySelector('.E-Mail').parentElement);
-            formDynamicInput(document.querySelector('.E-Mail').parentElement);
-            formTestForInput(document.querySelector('.Link').parentElement);
-            formDynamicInput(document.querySelector('.Link').parentElement);
-        });
+                formTestForInput(document.querySelector('.E-Mail').parentElement);
+                formDynamicInput(document.querySelector('.E-Mail').parentElement);
+                formTestForInput(document.querySelector('.Link').parentElement);
+                formDynamicInput(document.querySelector('.Link').parentElement);
+            });
+        }
+    } else {
+        login();
     }
 };
 const formAddEventListeners = () => {
@@ -178,8 +181,11 @@ const formTestForInput = (input) => {
     }
 };
 const formInitialFunction = () => {
-    document.querySelector('.Vorname').value = chayns.env.user.firstName;
-    document.querySelector('.Nachname').value = chayns.env.user.lastName;
+    if (chayns.env.user.isAuthenticated) {
+        document.querySelector('.Vorname').value = chayns.env.user.firstName;
+        document.querySelector('.Nachname').value = chayns.env.user.lastName;
+    }
+
 
     const inputs2 = document.querySelectorAll('.mandatory');
     // eslint-disable-next-line no-restricted-syntax
@@ -187,7 +193,16 @@ const formInitialFunction = () => {
         formTestForInput(input);
     }
 };
+function login() {
+    // optional -> prevents site reload
+    chayns.addAccessTokenChangeListener(() => {
+        console.log('login successful');
+        sendFormInput();
+    });
 
+    // no reload tapp after login
+    chayns.login();
+}
 
 const init = async () => {
     try {
