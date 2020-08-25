@@ -128,7 +128,7 @@ const sendFormInput = () => {
                 document.querySelector('.Link').value = null;
                 document.querySelector('.Anmerkungen').value = null;
             }
-            formTestForInput();
+            formTestForInput(document.querySelector('.Link').parentElement);
         });
     }
 };
