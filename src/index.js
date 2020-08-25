@@ -16,13 +16,10 @@ const formTestForInitialInput = () => {
     }
 };
 const formDynamicInput = (dynamicInput) => {
-    console.log('macht was');
     if (dynamicInput.children[0].value) {
-        console.log('if');
         dynamicInput.classList.add('labelRight');
     } else {
         dynamicInput.classList.remove('labelRight');
-        console.log('else')
     }
 };
 
@@ -70,9 +67,11 @@ const createSiteList = (sites) => {
     }
 };
 const extendWebsiteList = async () => {
-    document.querySelector('.extendButton').classList.add('grey');
+    document.querySelector('.extendButton').classList.add('hidden');
+    document.querySelector('.accordion').classList.add('hidden');
     const sites = await fetchSitesData(20 * fetchSitesCounter, 21);
-    document.querySelector('.extendButton').classList.remove('grey');
+    document.querySelector('.extendButton').classList.remove('hidden');
+    document.querySelector('.accordion').classList.remove('hidden');
 
     if (sites.Data) {
         if (!sites.Data[20]) {
