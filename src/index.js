@@ -1,3 +1,4 @@
+/* eslint-disable no-await-in-loop */
 /* eslint-disable no-param-reassign */
 import './app.scss';
 import 'whatwg-fetch';
@@ -37,7 +38,7 @@ const fetchSitesData = async (skip, take) => {
         return null;
     }
 };
-const createSiteList = (sites) => {
+const createSiteList = async (sites) => {
     // eslint-disable-next-line no-restricted-syntax
     for (const site of sites) {
         const websiteIconContainer = document.createElement('div');
@@ -59,8 +60,17 @@ const createSiteList = (sites) => {
 
         websiteName.innerHTML = site.appstoreName;
         websiteIconLink.addEventListener('click', () => { chayns.openUrlInBrowser(`https://chayns.net/${site.siteId}`); });
-        websiteIcon.style = `background-image: url(https://sub60.tobit.com/l/${site.locationId}?size=65)`;
-        websiteIconDef.style = 'background-image: url(https://sub60.tobit.com/l/152342?size=65)';
+
+        try {
+            // eslint-disable-next-line no-unused-vars
+            const response = await fetch(`https://sub60.tobit.com/l/${site.locationId}?size=65`);
+            websiteIcon.style = `background-image: url(https://sub60.tobit.com/l/${site.locationId}?size=65)`;
+        } catch {
+            websiteIcon.style = 'background-image: url(https://sub60.tobit.com/l/152342?size=65)';
+        }
+
+        // websiteIcon.style = `background-image: url(https://sub60.tobit.com/l/${site.locationId}?size=65)`;
+        // websiteIconDef.style = 'background-image: url(https://sub60.tobit.com/l/152342?size=65)';
 
         document.querySelector('.websiteList').appendChild(websiteIconContainer);
         websiteIconContainer.appendChild(websiteIconLink);
