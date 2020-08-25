@@ -6,10 +6,23 @@ let fetchSitesCounter = 0;
 let searchFilter = 'Ahaus';
 let myVar;
 
-const formRealignPlaceholder = () => {
-    for (let i = 0; i < document.getElementsByClassName('formInput').length; i += 1) {
-        // if (document.getElementById(`${i}`).value) {
-            document.getElementsByClassName('formInput')[i].classList.add('labelRight');
+const formTestForInitialInput = () => {
+    // eslint-disable-next-line no-restricted-syntax
+    for (const dynamicInput of document.querySelectorAll('.dynamicInput')) {
+        // eslint-disable-next-line no-restricted-syntax
+            formDynamicInput(dynamicInput);
+            dynamicInput.children[0].addEventListener('input', () => { formDynamicInput(dynamicInput); });
+            console.log(dynamicInput.children[0]);
+    }
+};
+const formDynamicInput = (dynamicInput) => {
+    console.log('macht was');
+    if (dynamicInput.children[0].value) {
+        console.log('if');
+        dynamicInput.classList.add('labelRight');
+    } else {
+        dynamicInput.classList.remove('labelRight');
+        console.log('else')
     }
 };
 
@@ -89,10 +102,8 @@ const searchText = async () => {
     extendWebsiteList(searchFilter);
 };
 const searchSetTimeout = () => {
-    myVar = setTimeout(() => { searchText(); }, 500);
-};
-const searchClearTimeout = () => {
     clearTimeout(myVar);
+    myVar = setTimeout(() => { searchText(); }, 500);
 };
 
 const sendFormInput = () => {
@@ -170,7 +181,7 @@ const init = async () => {
     document.querySelector('.extendButton').addEventListener('click', () => { extendWebsiteList(); });
     document.querySelector('.formButton').addEventListener('click', () => { sendFormInput(); });
 
-    document.querySelector('.searchInput').addEventListener('input', () => { searchClearTimeout(); searchSetTimeout(); });
+    document.querySelector('.searchInput').addEventListener('input', () => { searchSetTimeout(); });
     // Initial Form Input Test
     formInitialFunction();
 
@@ -178,7 +189,7 @@ const init = async () => {
 
     extendWebsiteList();
 
-    formRealignPlaceholder();
+    formTestForInitialInput();
 };
 
 init();
