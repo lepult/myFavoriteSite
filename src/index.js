@@ -66,9 +66,8 @@ const createSiteList = (sites) => {
         websiteIconContainer.appendChild(websiteName);
     }
 };
-const extendWebsiteList = async () => {
+const extendWebsiteList = async (list) => {
     document.querySelector('.extendButton').classList.add('hidden');
-    document.querySelector('.accordion').classList.add('hidden');
     const sites = await fetchSitesData(20 * fetchSitesCounter, 21);
     document.querySelector('.extendButton').classList.remove('hidden');
     document.querySelector('.accordion').classList.remove('hidden');
@@ -80,6 +79,13 @@ const extendWebsiteList = async () => {
             sites.Data.length = 20;
             document.querySelector('.extendButton').classList.remove('hidden');
         }
+        if (list) {
+            // eslint-disable-next-line no-restricted-syntax
+            for await (const item of list) {
+                item.remove();
+            }
+        }
+
         createSiteList(sites.Data);
         fetchSitesCounter += 1;
     }
@@ -93,12 +99,10 @@ const searchText = async () => {
     }
     const list = await Promise.all(document.querySelector('.websiteList').children);
     // eslint-disable-next-line no-restricted-syntax
-    for await (const item of list) {
-        item.remove();
-    }
+
     fetchSitesCounter = 0;
 
-    extendWebsiteList(searchFilter);
+    extendWebsiteList(list);
 };
 const searchSetTimeout = () => {
     clearTimeout(myVar);
@@ -125,10 +129,21 @@ const sendFormInput = () => {
             if (data.status === 200) {
                 chayns.dialog.alert('', 'Wir haben Deine Anfrage erhalten.').then(console.log);
 
+                document.querySelector('.PLZ').value = null;
+                document.querySelector('.Stadt').value = null;
+                document.querySelector('.Straße').value = null;
+                document.querySelector('.E-Mail').value = null;
                 document.querySelector('.Link').value = null;
                 document.querySelector('.Anmerkungen').value = null;
             }
+            formDynamicInput(document.querySelector('.PLZ').parentElement);
+            formDynamicInput(document.querySelector('.Stadt').parentElement);
+            formDynamicInput(document.querySelector('.Straße').parentElement);
+
+            formTestForInput(document.querySelector('.E-Mail').parentElement);
+            formDynamicInput(document.querySelector('.E-Mail').parentElement);
             formTestForInput(document.querySelector('.Link').parentElement);
+            formDynamicInput(document.querySelector('.Link').parentElement);
         });
     }
 };
