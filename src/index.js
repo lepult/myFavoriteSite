@@ -24,13 +24,16 @@ const formDynamicInput = (dynamicInput) => {
 };
 
 const fetchSitesData = async (skip, take) => {
+    chayns.showWaitCursor();
     try {
         const response = await fetch(`https://chayns1.tobit.com/TappApi/Site/SlitteApp?SearchString=${searchFilter}&Skip=${skip}&Take=${take}`);
         const json = await response.json();
         console.log('parsed json', json);
+        chayns.hideWaitCursor();
         return json;
     } catch (ex) {
         console.log('parsing failed', ex);
+        chayns.hideWaitCursor();
         return null;
     }
 };
@@ -92,17 +95,18 @@ const extendWebsiteList = async (list) => {
 };
 
 const searchText = async () => {
-    searchFilter = document.querySelector('.searchInput').value;
+    let newSearchFilter = document.querySelector('.searchInput').value;
 
-    if (!searchFilter) {
-        searchFilter = 'Ahaus';
+    if (!newSearchFilter) {
+        newSearchFilter = 'Ahaus';
     }
-    const list = await Promise.all(document.querySelector('.websiteList').children);
-    // eslint-disable-next-line no-restricted-syntax
-
-    fetchSitesCounter = 0;
-
-    extendWebsiteList(list);
+    if (newSearchFilter !== searchFilter) {
+        searchFilter = newSearchFilter;
+        const list = await Promise.all(document.querySelector('.websiteList').children);
+        // eslint-disable-next-line no-restricted-syntax
+        fetchSitesCounter = 0;
+        extendWebsiteList(list);
+    }
 };
 const searchSetTimeout = () => {
     clearTimeout(myVar);
