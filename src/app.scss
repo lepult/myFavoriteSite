@@ -12,3 +12,181 @@
     padding-top: 10px;
   }
 }
+.hidden{
+  display: none;
+}
+.grey{
+  opacity: 0.25;
+}
+
+.tapp__intro{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.searchBox{
+  text-align: right;
+  height: fit-content;
+  display: flex; 
+  flex-direction: row; 
+  border: none;
+}
+.searchInputContainer{
+  width: fit-content; 
+  margin-right: 5px;
+}
+.searchIcon{
+  opacity: 0.3; 
+  vertical-align: middle; 
+  margin-top: 6px;
+}
+.contentBox{
+  display: flex; 
+  flex-direction: column; 
+  align-items: center;
+}
+.listBox{
+  width: 480px;
+  padding: 8px 12px;  
+  margin-bottom: 10px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+@media screen and (max-width: 480px) {
+  .listBox{
+    width: 100%;
+  }
+}
+.websiteList{
+  margin-top: 20px;
+  display: flex; 
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.websiteIconContainer{
+  width: 25%;
+  //background-color: red;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 20px;
+  position: relative;
+}
+@media screen and (max-width: 480px) {
+  .websiteIconContainer{
+    width: 33%;
+    //background-color: red;
+  }
+}
+@media screen and (max-width: 350px) {
+  .websiteIconContainer{
+    width: 50%;
+    //background-color: red;
+  }
+}
+
+.websiteIconLink{
+  border-bottom: none !important;
+  text-align: center;
+}
+.websiteIcon{
+  width: 65px;
+  height: 65px;
+  background: white;
+  margin: 0px auto 5px auto;
+  background-size: contain;
+  animation: out 0.25s ease-in both;
+  animation: void 1s ease-in both;
+}
+
+.websiteIcon:hover {
+  animation: in 0.25s ease-in both;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+  opacity: 1;
+}
+
+@keyframes in {
+  0% {transform: scale(1)};
+  100% {transform: scale(1.2)};
+}
+
+@keyframes out {
+  0% {transform: scale(1.2)};
+  100% {transform: scale(1)};
+}
+
+@keyframes void {
+  0% {opacity: 0}
+  100% {opacity: 1}
+}
+
+.websiteIconDef{
+  width: 65px;
+  height: 65px;
+  background: white;
+  margin: 0px auto 5px auto;
+  background-size: contain;
+}
+.websiteName{
+  width: 90%;
+  height: 16px;
+  font-size: 13px;
+  line-height: 0.75;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 10px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.formButton{
+  text-align: left;
+}
+.form{
+  display: flex;
+  flex-direction: column;
+}
+.formPersonalInformation{
+  display: flex;
+  flex-direction: row;
+  padding-bottom: 20px;
+  flex-wrap: wrap;
+}
+.formWebsiteInformation{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+}
+.formInput{
+  margin-bottom: 2.5px;
+  margin-top: 2.5px;
+  width: 100%;
+}
+.Anmerkungen::placeholder{
+  opacity: 50%;
+  color: white;
+}
+.formInputNotDynamic{
+  margin-bottom: 2.5px;
+  margin-top: 2.5px;
+  width: 100%;
+}
+.formInputMissing{
+  color: #ca8181 !important;
+  font-weight: 700;
+}
+.formButtonContainer{
+  width: 100%; 
+  text-align: center;
+}
+.formButton{
+  margin: 20px 0 10px;
+}

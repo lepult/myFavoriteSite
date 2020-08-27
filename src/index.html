@@ -7,22 +7,109 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta charset="utf-8">
 
+    
+
+<!-- To get started, load the chayns API styles and JavaScript from the CDN -->
+
+    <!-- css styles -->
+    <script src="https://api.chayns-static.space/css/v4/compatibility/compatibility.min.js" version="4.2"></script>
+
+    <!-- js api -->
+    <script src="https://api.chayns-static.space/js/v4.0/chayns.min.js"></script>
+    <script src="https://api.chayns-static.space/ui/v4.0/chayns-ui.min.js"></script>
+
+
     <link rel="stylesheet" href="https://api.chayns.net/css/v4.2">
 
-    <title>chayns® ESNext Template</title>
+    <title>My Favourite Sites</title>
 </head>
 <body>
-<div id="app">
     <div class="tapp">
-        <div class="userInfo">
-            <p id="intro">
-            <div class="btnWrapper">
-                <button id="loginBtn" class="button" />
+        <div class="tapp__intro" style="margin-bottom: 10px;">
+            <h1 class="headline">My Favourite Sites</h1>
+            <div class="searchBox">
+                <div class="input-group labelRight dynamicInput searchInputContainer">
+                    <input style="width: 100%;" class="input searchInput" type="text" id="7" required="">
+                    <label for="7" class="">Suche</label>
+                </div>
+                <a class="searchButton" style="border: none">
+                    <i class="fal fa-search searchIcon"></i>
+                </a>
+            </div>
+            <p>Hier findest Du eine Übersicht von allen Chayns Website in deiner Umgebung. Deine Seite fehlt hier noch? Sende sie uns mithilfe des Formulars unten.</p>
+        </div>
+        <div class="listBox">
+            <div class="websiteList">
+            </div>
+            <button class="button extendButton">Mehr</button>
+        </div>
+
+        <div class="accordion hidden" data-group="1">
+            <div class="accordion__head">
+                <div class="accordion__head__icon accordion--trigger">
+                    <i class="ts-angle-right"></i>
+                </div>
+                <div class="accordion__head__title  accordion--trigger">
+                     Deine Seite fehlt?
+                </div>
+            </div>
+            <div class="accordion__body">
+                <div class="accordion__item form">
+                    <div style="width: 100%">
+                        <div class="formHeader">Name</div>
+                        <div class="formPersonalInformation">
+                            <div class="input-group formInput mandatory dynamicInput">
+                                <input style="width: 100%;" class="input Vorname" type="text" required="">
+                                <label class="inputLabel">Vorname</label>
+                            </div>
+                            <div class="input-group formInput mandatory dynamicInput">
+                                <input style="width: 100%;" class="input Nachname" type="text" required="">
+                                <label class="inputLabel">Nachname</label>
+                            </div>
+                        </div>
+                        <div class="formHeader">Adresse</div>
+                        <div class="formPersonalInformation">
+                            <div class="input-group formInput dynamicInput" style="width: 33%; margin-right: 2%">
+                                <input style="width: 100%;" class="input PLZ" type="text" required="">
+                                <label class="inputLabel">PLZ</label>
+                            </div>
+                            <div class="input-group formInput dynamicInput" style="width: 65%">
+                                <input style="width: 100%;" class="input Stadt" type="text" required="">
+                                <label class="inputLabel">Stadt</label>
+                            </div>
+                            <div class="input-group formInput dynamicInput">
+                                <input style="width: 100%;" class="input Straße" type="text" required="">
+                                <label class="inputLabel">Straße/Hausnummer</label>
+                            </div>
+                            <div class="input-group formInput mandatory dynamicInput">
+                                <input style="width: 100%;" class="input E-Mail" type="text" required="">
+                                <label class="inputLabel">E-Mail</label>
+                            </div>
+                        </div>
+                        <div class="formHeader">Deine Seite</div>
+                        <div class="formWebsiteInformation">
+                            <div class="input-group formInput mandatory dynamicInput">
+                                <input style="width: 100%;" class="input Link" type="text" required="">
+                                <label class="inputLabel">Link deiner Seite</label>
+                            </div>
+                            <textarea class="input formInputNotDynamic textInp Anmerkungen" placeholder="Anmerkungen"></textarea>
+                        </div>
+                        <div class="formButtonContainer">
+                            <button class="button formButton">Senden!</button>
+                        </div>
+ 
+                    </div>
+                    </div>
+                </div>
             </div>
         </div>
+
     </div>
-    <script src="https://api.chayns-static.space/js/v4.0/chayns.min.js"></script>
+
+
+
+
     <script src="https://polyfillsvc.tobit.com/polyfill.min.js?flags=gated&features=default,es6,Map,fetch"></script>
-</div>
+
 </body>
 </html>
