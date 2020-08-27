@@ -99,7 +99,33 @@
   background: white;
   margin: 0px auto 5px auto;
   background-size: contain;
+  animation: out 0.25s ease-in both;
+  animation: void 1s ease-in both;
 }
+
+.websiteIcon:hover {
+  animation: in 0.25s ease-in both;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+  opacity: 1;
+}
+
+@keyframes in {
+  0% {transform: scale(1)};
+  100% {transform: scale(1.2)};
+}
+
+@keyframes out {
+  0% {transform: scale(1.2)};
+  100% {transform: scale(1)};
+}
+
+@keyframes void {
+  0% {opacity: 0}
+  100% {opacity: 1}
+}
+
 .websiteIconDef{
   width: 65px;
   height: 65px;
@@ -114,6 +140,7 @@
   line-height: 0.75;
   margin-right: auto;
   margin-left: auto;
+  margin-top: 10px;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
